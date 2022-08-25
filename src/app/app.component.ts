@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'BloggerApp';
+  isLoggedIn!:boolean;
+
+  logout(){
+   const loggedOut:boolean=this.authService.logout();
+   if(loggedOut){
+       this.router.navigate(['/login']);
+   }
+  }
+
+  checkLoggedInUser(){
+    this.isLoggedIn=this.authService.loggedIn();
+  }
+  constructor(private authService:AuthService,private router:Router){
+
+  }
 }

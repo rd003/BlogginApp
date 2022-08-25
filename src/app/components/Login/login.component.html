@@ -1,0 +1,27 @@
+
+<h3>Login</h3>
+<form [formGroup]='loginForm' (ngSubmit)="onPost()">
+
+<!--username-->
+<input type="text" placeholder="username" formControlName="username">
+<div *ngIf="f.username.invalid && (f.username.touched || f.username.dirty)">
+    <div *ngIf="f.username.errors?.['required']">
+        Please type username.
+    </div>
+</div>
+
+<!--password-->
+<input type="password" placeholder="password" formControlName="password">
+<div *ngIf="f.password.invalid && (f.password.touched || f.password.dirty)">
+    <div *ngIf="f.password.errors?.['required']">
+        Please type password
+    </div>
+</div>
+<!--message-->
+<div *ngIf="status!=null">
+    <div>
+    {{status.message}}
+    </div>
+</div>
+<button type="submit" [disabled]="loginForm.invalid">Save</button>
+</form>

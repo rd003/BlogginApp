@@ -1,0 +1,35 @@
+<h3>Blog Categories</h3>
+<table mat-table [dataSource]="categories" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="categoryName">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let category"> {{category.categoryName}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="parentCategoryName">
+        <th mat-header-cell *matHeaderCellDef> Parent Category </th>
+        <td mat-cell *matCellDef="let category"> {{category.parentCategoryName}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<!-- 
+     <thead>
+        <tr>
+            <th>Category</th>
+            <th>Parent Category</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let category of categories">
+            <td >{{category.categoryName}}</td>
+            <td >{{category.parentCategoryName}}</td>
+        </tr>
+    </tbody>
+ -->

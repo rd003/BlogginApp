@@ -1,0 +1,52 @@
+
+<mat-card>
+    <mat-card-title>
+        {{title}}
+
+    </mat-card-title>
+    <mat-card-content>
+        <p>
+          <button mat-raised-button color="accent" routerLink="/display-category">All Categories</button>
+        <p>
+
+
+<!--form starts-->
+<form [formGroup]="blogCategoryForm" (ngSubmit)="onPost(formGroup)" #formGroup="ngForm">
+  
+    <input  type="hidden" formControlName="id">
+    <p>
+
+     <mat-form-field appearance="fill">
+        <mat-label>Category Name</mat-label>
+        <input type="text" matInput placeholder="category name" formControlName="categoryName" [errorStateMatcher]="matcher">
+        <mat-error >
+           Username is required.
+        </mat-error>
+      </mat-form-field>
+    </p>
+   
+    <p>
+        <mat-form-field appearance="fill">
+         <mat-label>Parent Category</mat-label>
+         <mat-select formControlName="parentCategory_Id">
+          <mat-option value="">--Select--</mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category.id">{{category.categoryName}}</mat-option>
+        </mat-select>
+        </mat-form-field>
+        
+    </p>
+   
+
+    <p *ngIf="status!=null">
+        {{status.message}}
+
+        <!-- <span [ngClass]="[{'errorText':status.statusCode==0},{'successText':status.statusCode==1}]">
+        </span> -->
+    </p>
+    
+    <button type="submit" mat-raised-button color="primary" [disabled]="blogCategoryForm.invalid">Save</button>
+  
+</form>
+<!--form ends-->
+</mat-card-content>
+</mat-card>

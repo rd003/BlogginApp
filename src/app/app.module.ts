@@ -11,6 +11,10 @@ import { AddUpdateCategory } from './components/Category/add-update-category.com
 import { DisplayCategoryComponent } from './components/Category/display-category.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,7 @@ import {MatTableModule} from '@angular/material/table';
   ],
   imports: [
     BrowserModule,AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule, BrowserAnimationsModule
-    ,MatTableModule
+    ,MatTableModule,MatCardModule,MatInputModule,MatButtonModule,MatSelectModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, 

@@ -1,3 +1,3 @@
 export interface BlogCategory{
-  id:number,categoryName:string,parentCategoryName:string,parentCategory_Id:string
+  id:number,categoryName:string,parentCategoryName:string,parentCategory_Id:string|null 
 }

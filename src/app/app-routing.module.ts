@@ -10,7 +10,8 @@ const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
   {path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
-  {path:'add-update-category/:id',component:AddUpdateCategory,canActivate:[AuthGuard]},
+  {path:'add-category',component:AddUpdateCategory,canActivate:[AuthGuard]},
+  {path:'update-category/:id',component:AddUpdateCategory,canActivate:[AuthGuard]},
   {path:'display-category',component:DisplayCategoryComponent,canActivate:[AuthGuard]}
 ];
 

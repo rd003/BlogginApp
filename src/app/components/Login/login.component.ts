@@ -1,17 +1,21 @@
 import { Component,OnInit } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, FormGroupDirective, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { MyErrorStateMatcher } from "src/app/models/error-matcher";
 import { Login } from "src/app/models/login-model";
 import { Status } from "src/app/models/status";
 import { AuthService } from "src/app/services/auth.service";
 import { LoginService } from "src/app/services/login.service";
+
+
 @Component({
     selector:'app-login',
-    templateUrl:'./login.component.html'
+    templateUrl:'./login.component.html',
+    styleUrls:['./login.component.css']
 })
 
 export class LoginComponent implements OnInit{
-
+    matcher = new MyErrorStateMatcher();
     loginForm=this.fb.group({
       'username':['',Validators.required],
       'password':['',Validators.required]
@@ -33,7 +37,7 @@ export class LoginComponent implements OnInit{
        return this.loginForm.controls;
     }
     
-    onPost(){
+    onPost(formDirective:FormGroupDirective){
         this.status={statusCode:2,message:"wait..."};
         this.disable=true;
         const loginData:Login=Object.assign(this.loginForm.value);
@@ -46,6 +50,8 @@ export class LoginComponent implements OnInit{
                     this.loginForm.reset();
                     this.router.navigate(['/dashboard']);
                 }
+                this.loginForm.reset();
+                formDirective.resetForm();
             },
             error:(error)=>{
                 console.error(error);

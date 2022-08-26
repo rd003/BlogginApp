@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import {FormBuilder, FormGroup, FormGroupDirective, Validators } from "@angular/forms";
-import { ErrorStateMatcher } from "@angular/material/core";
 import { ActivatedRoute } from "@angular/router";
 import { BlogCategory } from "src/app/models/blog-category";
 import { MyErrorStateMatcher } from "src/app/models/error-matcher";
@@ -9,7 +8,8 @@ import { BlogCategoryService } from "src/app/services/blog-category.service";
 
 @Component({
     selector:'app-add-update-category',
-    templateUrl:'./add-update-category.component.html'
+    templateUrl:'./add-update-category.component.html',
+    styleUrls:['./add-update-category.component.css']
 })
 
 export class AddUpdateCategory implements OnInit{
@@ -29,14 +29,13 @@ export class AddUpdateCategory implements OnInit{
     matcher= new MyErrorStateMatcher();
     get f(){
         return this.blogCategoryForm.controls;
-    }
+     }
     onPost(fromGrouDirective:FormGroupDirective){
       this.status={statusCode:0,message:"wait..."};
       this.blogCategoryForm.setErrors({'invalid':true});
 
       const blogCategory:BlogCategory=Object.assign(this.blogCategoryForm.value);
       blogCategory.parentCategory_Id=blogCategory.parentCategory_Id==""?null:blogCategory.parentCategory_Id;
-     
 
       this.blogCategoryService.addUpdate(blogCategory).subscribe({
         next:(data)=>{

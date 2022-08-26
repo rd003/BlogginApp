@@ -1,4 +1,3 @@
-
 <mat-card>
     <mat-card-title>
         {{title}}
@@ -19,8 +18,8 @@
      <mat-form-field appearance="fill">
         <mat-label>Category Name</mat-label>
         <input type="text" matInput placeholder="category name" formControlName="categoryName" [errorStateMatcher]="matcher">
-        <mat-error >
-           Username is required.
+        <mat-error *ngIf="f['categoryName'].errors?.['required']">
+          category name is required.
         </mat-error>
       </mat-form-field>
     </p>
@@ -36,12 +35,10 @@
         
     </p>
    
-
     <p *ngIf="status!=null">
-        {{status.message}}
-
-        <!-- <span [ngClass]="[{'errorText':status.statusCode==0},{'successText':status.statusCode==1}]">
-        </span> -->
+        <span [ngClass]="{'errorText':status.statusCode==0,'successText':status.statusCode==1}">
+       {{status.message}}
+        </span>
     </p>
     
     <button type="submit" mat-raised-button color="primary" [disabled]="blogCategoryForm.invalid">Save</button>

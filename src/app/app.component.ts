@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
 import { AuthService } from './services/auth.service';
 
 @Component({

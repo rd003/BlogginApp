@@ -16,10 +16,11 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import { BtnCellRendererComponent } from './components/btn-cell-renderer/btn-cell-renderer.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, DashboardComponent,AddUpdateCategory,DisplayCategoryComponent,BtnCellRendererComponent
+    AppComponent,LoginComponent,ChangePasswordComponent,DashboardComponent,AddUpdateCategory,DisplayCategoryComponent,BtnCellRendererComponent
   ],
   imports: [
     BrowserModule,AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule, BrowserAnimationsModule

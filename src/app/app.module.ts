@@ -10,19 +10,20 @@ import { TokenInterceptorService } from './services/token-interceptor';
 import { AddUpdateCategory } from './components/Category/add-update-category.component';
 import { DisplayCategoryComponent } from './components/Category/display-category.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+import { BtnCellRendererComponent } from './components/btn-cell-renderer/btn-cell-renderer.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, DashboardComponent,AddUpdateCategory,DisplayCategoryComponent
+    AppComponent,LoginComponent, DashboardComponent,AddUpdateCategory,DisplayCategoryComponent,BtnCellRendererComponent
   ],
   imports: [
     BrowserModule,AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule, BrowserAnimationsModule
-    ,MatTableModule,MatCardModule,MatInputModule,MatButtonModule,MatSelectModule
+    ,MatCardModule,MatInputModule,MatButtonModule,MatSelectModule,AgGridModule,
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, 

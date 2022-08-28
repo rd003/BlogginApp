@@ -10,7 +10,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'BloggerApp';
   isLoggedIn!:boolean;
-  
+  username:string='';
   logout(){
    const loggedOut:boolean=this.authService.logout();
    if(loggedOut){
@@ -22,6 +22,8 @@ export class AppComponent {
     this.isLoggedIn=this.authService.loggedIn();
   }
   constructor(private authService:AuthService,private router:Router){
+       const username=authService.getUsername()??"";
+       this.username=username;
       if(authService.tokenExpired()){
         alert("token has expired");
       }

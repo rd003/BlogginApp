@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit{
                 if(data.statusCode==1){
                     this.status={statusCode:0,message:''};
                     localStorage.setItem('token',data.token);
+                    localStorage.setItem('username',data.username);
                     this.loginForm.reset();
                     this.router.navigate(['/dashboard']);
                 }

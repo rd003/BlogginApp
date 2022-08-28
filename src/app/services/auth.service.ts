@@ -12,12 +12,17 @@ export class AuthService{
       getToken(){
         return localStorage.getItem('token')
       }
+
+      getUsername(){
+        return localStorage.getItem('username')
+      }
          
       logout():boolean{
         var loggedIn=this.loggedIn();
         if(loggedIn){
           console.log('logout');
         localStorage.removeItem('token');
+        localStorage.removeItem('username');
         return true;
         }
         return false;

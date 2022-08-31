@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, FormGroupDirective, Validators } from "@angular/
 import { ActivatedRoute } from "@angular/router";
 import { BlogCategory } from "src/app/models/blog-category";
 import { MyErrorStateMatcher } from "src/app/models/error-matcher";
+import { GetBlogCategoryParams } from "src/app/models/get-blog-categories-param";
 import { Status } from "src/app/models/status";
 import { BlogCategoryService } from "src/app/services/blog-category.service";
 
@@ -57,9 +58,10 @@ export class AddUpdateCategory implements OnInit{
     }
 
     private getCategories(){
-        this.blogCategoryService.getAll().subscribe({
+       var params:GetBlogCategoryParams= {term:'',pageNo:1,pageSize:100};
+        this.blogCategoryService.getAll(params).subscribe({
             next:(data)=>{
-               this.categories=data; 
+               this.categories=data.records; 
             },
             error:(err)=>{console.log(err)}
         })

@@ -14,17 +14,17 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
-import { BtnCellRendererComponent } from './components/btn-cell-renderer/btn-cell-renderer.component';
-import { AgGridModule } from 'ag-grid-angular';
+import {MatTableModule} from '@angular/material/table';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent,ChangePasswordComponent,DashboardComponent,AddUpdateCategory,DisplayCategoryComponent,BtnCellRendererComponent
+    AppComponent,LoginComponent,ChangePasswordComponent,DashboardComponent,AddUpdateCategory,
+    DisplayCategoryComponent,
   ],
   imports: [
     BrowserModule,AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule, BrowserAnimationsModule
-    ,MatCardModule,MatInputModule,MatButtonModule,MatSelectModule,AgGridModule,
+    ,MatCardModule,MatInputModule,MatButtonModule,MatSelectModule,MatTableModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, 

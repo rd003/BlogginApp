@@ -19,7 +19,7 @@ export class AppComponent {
   }
 
   checkLoggedInUser(){
-    this.isLoggedIn=this.authService.loggedIn();
+    this.isLoggedIn=this.authService.loggedIn() ;
   }
   constructor(private authService:AuthService,private router:Router){
        const username=authService.getUsername()??"";

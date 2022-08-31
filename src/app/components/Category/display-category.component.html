@@ -1,21 +1,25 @@
-<!-- <div style="width: 50%;margin-left: 5%;">
-  <div class="row r">
-      <div class="col-md-12"><h2>Blog Categories</h2></div>
-  </div>
-  <div class="row r">
-      <div class="col-md-12"><button type="button" class="btn btn-info" routerLink="/add-category"> Add more </button></div>
-  </div>
-  <div class="row r">
-      <div class="col-md-12">
-          
-      </div>
-  </div>
-</div> -->
-<ag-grid-angular
-  style="width: 700px; height: 500px;"
-  class="ag-theme-alpine"
-  [rowData]="rowData"
-  [columnDefs]="colDefs"  [pagination]="true" [paginationPageSize]="5"
-  [frameworkComponents]="frameworkComponents" (gridReady)="onGridReady($event)"
->
-</ag-grid-angular>
+<mat-card>
+  <mat-card-title>
+    Blog Categories(isko center me laga)
+  </mat-card-title>
+  <mat-card-content>
+
+<button mat-raised-button color="primary" routerLink="/add-category">Add more</button>
+<table mat-table [dataSource]="blogCategories" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="categoryName">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let category"> {{category.categoryName}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="parentCategoryName">
+        <th mat-header-cell *matHeaderCellDef> Parent Category </th>
+        <td mat-cell *matCellDef="let category"> {{category.parentCategoryName}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</mat-card-content>
+</mat-card>

@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core"
 })
 export class AuthService{
     loggedIn():boolean{
-        return !!localStorage.getItem('token') 
+        return !!localStorage.getItem('token') && !this.tokenExpired()
       }
     
       getToken(){
@@ -20,7 +20,6 @@ export class AuthService{
       logout():boolean{
         var loggedIn=this.loggedIn();
         if(loggedIn){
-          console.log('logout');
         localStorage.removeItem('token');
         localStorage.removeItem('username');
         return true;
@@ -28,9 +27,15 @@ export class AuthService{
         return false;
       }
 
-       tokenExpired():boolean {
+        tokenExpired():boolean {
         const token: string=this.getToken()??"";
-        const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+        if(!token)
+          return false;
+        const tokenSplit:string=token.split('.')[1];
+        const decodedString:string=atob(tokenSplit);
+        const jsonString=JSON.parse(decodedString);
+        console.log(jsonString);
+        const expiry = (jsonString).exp;
         return (Math.floor((new Date).getTime() / 1000)) >= expiry;
       }
        

@@ -7,6 +7,7 @@ import {ChangePasswordModel} from 'src/app/models/change-password.model';
 import { Router } from '@angular/router';
 import { MyErrorStateMatcher } from 'src/app/models/error-matcher';
 import { MustMatch } from 'src/app/helpers/mustmatch.validator';
+import { validPattern } from 'src/app/helpers/pattern.validator';
 
 @Component({
     selector:'app-change-password',
@@ -17,7 +18,7 @@ export class ChangePasswordComponent implements OnInit{
  // use loginService.changePassword() method for changing the password
  constructor(private loginService:LoginService,private router:Router,
     private authService:AuthService,private fb:FormBuilder){
-  
+       
  }
 
  frm!:FormGroup;
@@ -27,9 +28,10 @@ export class ChangePasswordComponent implements OnInit{
     return this.frm.controls;
  }
  ngOnInit(){
+    const patternRegex= new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*[#$^+=!*()@%&]).{6,}$');
     this.frm = this.fb.group({
         'currentPassword':['',Validators.required],
-        'newPassword':['',Validators.required],
+        'newPassword':['',[Validators.required,validPattern(patternRegex)]],
         'confirmPassword':['',Validators.required]
     },{
         validator:MustMatch('newPassword','confirmPassword')

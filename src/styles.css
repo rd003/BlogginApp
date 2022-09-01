@@ -1,5 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~ag-grid-community/dist/styles/ag-grid.css";
-   @import "~ag-grid-community/dist/styles/ag-theme-alpine.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.center-80{
+width:80%;
+margin:auto;
+}
+.center-90{
+    width:80%;
+    margin:auto;
+    }

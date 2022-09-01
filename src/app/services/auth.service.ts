@@ -34,7 +34,6 @@ export class AuthService{
         const tokenSplit:string=token.split('.')[1];
         const decodedString:string=atob(tokenSplit);
         const jsonString=JSON.parse(decodedString);
-        console.log(jsonString);
         const expiry = (jsonString).exp;
         return (Math.floor((new Date).getTime() / 1000)) >= expiry;
       }

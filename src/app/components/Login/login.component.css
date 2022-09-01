@@ -16,11 +16,12 @@
     justify-content: center;
   }
 
-  .error {
-    color: red;
-  }
+  
 
   .button {
     display: flex;
     justify-content: flex-end;
+  }
+  .error {
+    color: red;
   }

@@ -15,6 +15,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
@@ -24,7 +25,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
   ],
   imports: [
     BrowserModule,AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule, BrowserAnimationsModule
-    ,MatCardModule,MatInputModule,MatButtonModule,MatSelectModule,MatTableModule
+    ,MatCardModule,MatInputModule,MatButtonModule,MatSelectModule,MatTableModule,MatPaginatorModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, 

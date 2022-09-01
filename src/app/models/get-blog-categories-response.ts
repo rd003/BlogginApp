@@ -6,5 +6,6 @@ export interface GetBlogCategoriesResponse{
     pageSize: number,
     hasPrevious: boolean,
     hasNext: boolean,
+    totalCount:number,
     records:BlogCategory[]
 }

@@ -1,25 +1,45 @@
-<mat-card>
+<mat-card class="center-80">
   <mat-card-title>
-    Blog Categories(isko center me laga)
+    Blog Categories(mat-card ko 90% karke center me laga)
   </mat-card-title>
   <mat-card-content>
-
+<p>
 <button mat-raised-button color="primary" routerLink="/add-category">Add more</button>
-<table mat-table [dataSource]="blogCategories" class="mat-elevation-z8">
+</p>
+<p>
+  <input type="text" class="form-control" placeholder="Search by Name" (change)="searchData(term.value)" #term/>
+</p>
+<table mat-table style="width:100%" [dataSource]="blogCategories" class="mat-elevation-z8">
 
-      <ng-container matColumnDef="categoryName">
+      <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef> Category </th>
         <td mat-cell *matCellDef="let category"> {{category.categoryName}} </td>
       </ng-container>
 
 
-      <ng-container matColumnDef="parentCategoryName">
+      <ng-container matColumnDef="parentCategory">
         <th mat-header-cell *matHeaderCellDef> Parent Category </th>
         <td mat-cell *matCellDef="let category"> {{category.parentCategoryName}} </td>
       </ng-container>
+      
+     <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let category" class="action-link"> 
+        <a mat-raised-button color="accent" (click)="onBtnEdit(category.id)">Edit</a> | 
+        <a mat-raised-button color="warn" (click)="onBtnDelete(category.id)">Delete</a>  
+      </td>
+    </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="changePage($event)"
+               aria-label="Select page">
+
+</mat-paginator>
 </mat-card-content>
 </mat-card>

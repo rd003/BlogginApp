@@ -17,7 +17,7 @@ export class DisplayCategoryComponent implements OnInit{
     }
     
     blogCategories!:BlogCategory[];
-    displayedColumns: string[] = ['category', 'parentCategory',"action"];
+    displayedColumns: string[] = ['no','category', 'parentCategory',"action"];
     // MatPaginator Inputs
   length = 0;
   pageSize = 5;
@@ -25,18 +25,12 @@ export class DisplayCategoryComponent implements OnInit{
   pageSizeOptions: number[] = [5, 10, 25, 100];
   // MatPaginator Output
   
-
-  // setPageSizeOptions(setPageSizeOptionsInput: string) {debugger
-  //   if (setPageSizeOptionsInput) {
-  //     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-  //   }
-  // }
+  
     ngOnInit():void{
     this.fetchBlogCategories();
     
     }
 
-  
   
   onBtnEdit(id:number) {
     this.router.navigate([`/update-category/${id}`])
@@ -64,6 +58,7 @@ export class DisplayCategoryComponent implements OnInit{
   changePage(event:any){
     // console.log(`page size:${event.pageSize} index:${event.pageIndex} length:${event.length}`)
      this.pageNo=parseInt(event.pageIndex)+1;
+     this.pageSize=event.pageSize;
     this.fetchBlogCategories();
 
    }

@@ -1,6 +1,6 @@
 <mat-card class="center-80">
   <mat-card-title>
-    Blog Categories(mat-card ko 90% karke center me laga)
+    Blog Categories
   </mat-card-title>
   <mat-card-content>
 <p>
@@ -10,7 +10,12 @@
   <input type="text" class="form-control" placeholder="Search by Name" (change)="searchData(term.value)" #term/>
 </p>
 <table mat-table style="width:100%" [dataSource]="blogCategories" class="mat-elevation-z8">
-
+  <ng-container matColumnDef="no">
+    <th mat-header-cell *matHeaderCellDef> No# </th>
+    <td mat-cell *matCellDef="let category;let i=index" class="action-link">
+      {{i+1}} 
+    </td>
+  </ng-container>
       <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef> Category </th>
         <td mat-cell *matCellDef="let category"> {{category.categoryName}} </td>

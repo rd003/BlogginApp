@@ -20,7 +20,7 @@ export class BlogCategoryService{
     }
 
     getAll(params:GetBlogCategoryParams){
-        return this.httpClient.get<GetBlogCategoriesResponse>(this.baseUrl+`/getall?pageNo=${params.pageNo}&pageSize=${params.pageSize}&term=${params.term}`);
+        return this.httpClient.get<GetBlogCategoriesResponse>(this.baseUrl+`/getall?pageNo=${params.pageNo}&pageSize=${params.pageSize}&term=${params.term}&orderBy=${params.orderBy}`);
     }
 
     getById(id:number){

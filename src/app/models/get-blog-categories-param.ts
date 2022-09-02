@@ -1,5 +1,5 @@
-export interface GetBlogCategoryParams{
-    pageNo:number,
-    pageSize:number,
-    term:string|null
+import { IQueryStringParam } from "./querystring-param";
+
+export interface GetBlogCategoryParams extends IQueryStringParam{
+    
 }

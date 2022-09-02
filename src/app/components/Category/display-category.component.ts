@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { PageEvent } from "@angular/material/paginator";
 import { Router } from "@angular/router";
 import { debounceTime } from "rxjs";
 import { BlogCategory } from "src/app/models/blog-category";
@@ -15,10 +14,10 @@ export class DisplayCategoryComponent implements OnInit{
     constructor(private blogCategoryService:BlogCategoryService,private router:Router){
        
     }
-    
     blogCategories!:BlogCategory[];
-    displayedColumns: string[] = ['no','category', 'parentCategory',"action"];
+    displayedColumns: string[] = ['no','categoryName', 'parentCategoryName',"action"];
     // MatPaginator Inputs
+  sortByQueryString='';
   length = 0;
   pageSize = 5;
   pageNo=1;
@@ -59,15 +58,26 @@ export class DisplayCategoryComponent implements OnInit{
     // console.log(`page size:${event.pageSize} index:${event.pageIndex} length:${event.length}`)
      this.pageNo=parseInt(event.pageIndex)+1;
      this.pageSize=event.pageSize;
-    this.fetchBlogCategories();
+     this.fetchBlogCategories();
 
    }
+
+   /** Announce the change in sort state for assistive technology. */
+  announceSortChange(sortState: any) {
+    // This example uses English messages. If your application supports
+    // multiple language, you would internationalize these strings.
+    // Furthermore, you can customize the message to add additional
+    // details about the values being sorted.
+    if (sortState.active && sortState.direction) {
+      this.fetchBlogCategories('',`${sortState.active} ${sortState.direction}`);
+    } 
+  }
 
   searchData(term:string){
     this.fetchBlogCategories(term)
   }
-    private fetchBlogCategories(searchTerm:string=''){
-       var params:GetBlogCategoryParams= {term:searchTerm,pageNo:this.pageNo,pageSize:this.pageSize};
+    private fetchBlogCategories(searchTerm:string='',orderBy:string=''){
+       var params:GetBlogCategoryParams= {term:searchTerm,pageNo:this.pageNo,pageSize:this.pageSize,orderBy:orderBy};
         this.blogCategoryService.getAll(params).pipe(debounceTime(100)).subscribe({
             next:(data)=>{
                 this.blogCategories=data.records;

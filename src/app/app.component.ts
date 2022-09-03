@@ -24,8 +24,6 @@ export class AppComponent {
   constructor(private authService:AuthService,private router:Router){
        const username=authService.getUsername()??"";
        this.username=username;
-      if(authService.tokenExpired()){
-        alert("token has expired");
-      }
+     
   }
 }

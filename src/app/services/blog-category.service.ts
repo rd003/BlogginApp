@@ -19,8 +19,18 @@ export class BlogCategoryService{
          return this.httpClient.post<Status>(this.baseUrl+'/addupdate',model);
     }
 
-    getAll(params:GetBlogCategoryParams){
-        return this.httpClient.get<GetBlogCategoriesResponse>(this.baseUrl+`/getall?pageNo=${params.pageNo}&pageSize=${params.pageSize}&term=${params.term}&orderBy=${params.orderBy}`);
+    getAll(model:GetBlogCategoryParams){
+        let obj :{[k:string]:any}={pageNo:model.pageNo,pageSize:model.pageSize};
+        if(model.term)
+           obj['term']=model.term;
+        if(model.orderBy)
+           obj['orderBy']=model.orderBy;
+        // console.log(`paramsObj : ${JSON.stringify(obj)}`)
+        return this.httpClient.get<GetBlogCategoriesResponse>(this.baseUrl+`/getall`,
+        {
+          params:obj,
+          withCredentials:false
+        });
     }
 
     getById(id:number){
@@ -31,6 +41,8 @@ export class BlogCategoryService{
         return this.httpClient.delete<Status>(this.baseUrl+'/delete/'+id);
     }
 
-   
+    getCategoriesWithoutPaging(){
+        return this.httpClient.get<BlogCategory[]>(this.baseUrl+'/GetCatgoriesWithoutPaging')
+    }
 
 }

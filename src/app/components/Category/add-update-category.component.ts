@@ -58,10 +58,9 @@ export class AddUpdateCategory implements OnInit{
     }
 
     private getCategories(){
-       var params:GetBlogCategoryParams= {term:'',pageNo:1,pageSize:100,orderBy:''};
-        this.blogCategoryService.getAll(params).subscribe({
+        this.blogCategoryService.getCategoriesWithoutPaging().subscribe({
             next:(data)=>{
-               this.categories=data.records; 
+               this.categories=data; 
             },
             error:(err)=>{console.log(err)}
         })

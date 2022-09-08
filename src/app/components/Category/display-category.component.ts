@@ -17,7 +17,8 @@ export class DisplayCategoryComponent implements OnInit{
     blogCategories!:BlogCategory[];
     displayedColumns: string[] = ['no','categoryName', 'parentCategoryName',"action"];
     // MatPaginator Inputs
-  sortByQueryString='';
+  orderByQueryString='';
+  searchTerm='';
   length = 0;
   pageSize = 5;
   pageNo=1;
@@ -65,16 +66,18 @@ export class DisplayCategoryComponent implements OnInit{
    /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: any) {
     if (sortState.active && sortState.direction) {
-      this.fetchBlogCategories('',`${sortState.active} ${sortState.direction}`);
+      this.orderByQueryString=`${sortState.active} ${sortState.direction}`;
+    this.fetchBlogCategories();
     } 
   }
 
   searchData(term:string){
-    this.fetchBlogCategories(term)
+    this.searchTerm=term;
+    this.fetchBlogCategories();
   }
-    private fetchBlogCategories(searchTerm:string='',orderBy:string=''){
-       var params:GetBlogCategoryParams= {term:searchTerm,pageNo:this.pageNo,pageSize:this.pageSize,orderBy:orderBy};
-        this.blogCategoryService.getAll(params).pipe(debounceTime(100)).subscribe({
+    private fetchBlogCategories(){
+       var params:GetBlogCategoryParams= {term:this.searchTerm,pageNo:this.pageNo,pageSize:this.pageSize,orderBy:this.orderByQueryString};
+       this.blogCategoryService.getAll(params).pipe(debounceTime(100)).subscribe({
             next:(data)=>{
                 this.blogCategories=data.records;
                 this.length=data.totalCount;

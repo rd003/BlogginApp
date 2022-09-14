@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddUpdateBlogComponent } from './components/Blog/add-update-blog.component';
 import { AddUpdateCategory } from './components/Category/add-update-category.component';
 import { DisplayCategoryComponent } from './components/Category/display-category.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
@@ -14,7 +15,9 @@ const routes: Routes = [
   {path:'add-category',component:AddUpdateCategory,canActivate:[AuthGuard]},
   {path:'update-category/:id',component:AddUpdateCategory,canActivate:[AuthGuard]},
   {path:'display-category',component:DisplayCategoryComponent,canActivate:[AuthGuard]},
-  {path:'change-password',component:ChangePasswordComponent,canActivate:[AuthGuard]}
+  {path:'change-password',component:ChangePasswordComponent,canActivate:[AuthGuard]},
+  {path:'add-blog',component:AddUpdateBlogComponent,canActivate:[AuthGuard]},
+  {path:'update-blog/:id',component:AddUpdateBlogComponent,canActivate:[AuthGuard]},
 ];
 
 @NgModule({

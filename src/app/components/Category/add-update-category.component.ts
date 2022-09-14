@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, FormGroupDirective, Validators } from "@angular/
 import { ActivatedRoute } from "@angular/router";
 import { BlogCategory } from "src/app/models/blog-category";
 import { MyErrorStateMatcher } from "src/app/models/error-matcher";
-import { GetBlogCategoryParams } from "src/app/models/get-blog-categories-param";
 import { Status } from "src/app/models/status";
 import { BlogCategoryService } from "src/app/services/blog-category.service";
 
@@ -81,7 +80,6 @@ export class AddUpdateCategory implements OnInit{
        if(id){
         this.title="Update blog category";
          this.setCategoryForm(id);
-         
        }
     }
 }

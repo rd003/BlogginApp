@@ -1,0 +1,57 @@
+<mat-card class="center-80">
+  <mat-card-title>Add-Update Blog</mat-card-title>
+  <mat-card-content>
+    <p>
+      <button routerLink="/display-blogs" mat-raised-button color="primary">Back</button>
+    </p>
+<form [formGroup]="frm" (ngSubmit)="onPost(formGroup)" #formGroup="ngForm">
+
+  <input type="hidden" formControlName="id">
+  <input type="hidden" formControlName="isPublished">
+  <input type="hidden" formControlName="isDeleted">
+  <input type="hidden" formControlName="authorUsername">
+  <p>
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+  <mat-select formControlName="categoryId" [errorStateMatcher]="matcher">
+    <mat-option value="">--Select--</mat-option>
+    <mat-option *ngFor="let category of categories" [value]="category.id" >
+          {{category.categoryName}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="f['categoryId'].errors?.['required']">
+    Please select category
+  </mat-error>
+</mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="fill">
+    <mat-label>Blog Title</mat-label>
+  <input type="text" matInput [errorStateMatcher]="matcher" formControlName="blogTitle">
+  <mat-error *ngIf="f['blogTitle'].errors?.['required']">
+    Please enter blog title
+  </mat-error>
+</mat-form-field>
+</p>
+
+<p>
+  <mat-form-field appearance="fill">
+    <mat-label>Blog Content</mat-label>
+  <textarea type="text" formControlName="blogContent" matInput [errorStateMatcher]="matcher"> </textarea>
+    <mat-error *ngIf="f['blogContent'].errors?.['required']">
+      Please enter blog content
+    </mat-error>
+  </mat-form-field>
+</p>
+
+   <p *ngIf="status">
+     {{status.message}}
+   </p>
+
+    <p>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </p>
+
+</form>
+</mat-card-content>
+</mat-card>

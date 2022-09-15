@@ -1,0 +1,54 @@
+<mat-card class="centter-80">
+   <mat-card-title>
+      Blogs
+   </mat-card-title>
+   <mat-card-content>
+      <p>
+        <button type="button" mat-raised-button color="primary" routerLink="/add-blog">Add more</button>
+      </p>
+      <p>
+        <input type="text" class="form-control" placeholder="Search by Name" (change)="searchData(term.value)" #term/>
+      </p>
+
+      <table mat-table style="width:100%" [dataSource]="blogs" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+        <ng-container matColumnDef="no">
+            <th mat-header-cell *matHeaderCellDef> No# </th>
+            <td mat-cell *matCellDef="let blog;let i=index" class="action-link">
+              {{i+1}} 
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="blogTitle">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let blog" class="action-link">
+              {{blog.blogTitle}} 
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="publishedDate">
+            <th mat-header-cell *matHeaderCellDef> Published At </th>
+            <td mat-cell *matCellDef="let blog" class="action-link">
+              {{blog.publishedDate | date  }}
+            </td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let blog" class="action-link"> 
+              <a mat-raised-button color="accent" (click)="onBtnEdit(blog.id)">Edit</a> | 
+              <a mat-raised-button color="warn" (click)="onBtnDelete(blog.id)">Delete</a>  
+            </td>
+          </ng-container>
+      
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="changePage($event)"
+               aria-label="Select page">
+</mat-paginator>
+   </mat-card-content>
+</mat-card>

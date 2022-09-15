@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { BlogModel } from "../models/blog-model";
+import { GetBlogResponse } from "../models/get-blog-response";
 import { IQueryStringParam } from "../models/querystring-param";
 import { Status } from "../models/status";
 @Injectable({
@@ -36,7 +37,7 @@ export class BlogService{
            obj['term']=data.term;
         if(data.orderBy)
            obj['orderBy']=data.orderBy;
-        return this.http.get<BlogModel[]>(url,{
+        return this.http.get<GetBlogResponse>(url,{
             params:obj,
             withCredentials:false
         });

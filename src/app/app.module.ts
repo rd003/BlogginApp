@@ -19,10 +19,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { AddUpdateBlogComponent } from './components/Blog/add-update-blog.component';
+import { DisplayBlogComponent } from './components/Blog/display-blog.component';
 @NgModule({
   declarations: [
     AppComponent,LoginComponent,ChangePasswordComponent,DashboardComponent,AddUpdateCategory,
-    DisplayCategoryComponent,AddUpdateBlogComponent
+    DisplayCategoryComponent,AddUpdateBlogComponent,DisplayBlogComponent
   ],
   imports: [
     BrowserModule,AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule, BrowserAnimationsModule

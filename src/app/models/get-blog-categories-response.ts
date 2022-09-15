@@ -1,11 +1,6 @@
 import { BlogCategory } from "./blog-category"
+import { IPaginatorResponse } from "./IPaginatorResponse"
 
-export interface GetBlogCategoriesResponse{
-    currentPage: number,
-    totalPages: number,
-    pageSize: number,
-    hasPrevious: boolean,
-    hasNext: boolean,
-    totalCount:number,
+export interface GetBlogCategoriesResponse extends IPaginatorResponse{
     records:BlogCategory[]
 }
